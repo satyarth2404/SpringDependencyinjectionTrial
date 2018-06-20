@@ -1,5 +1,5 @@
 package com.saty.Alfred;
-
+import java.io.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -9,11 +9,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 public class App 
 {
-    public static void main( String[] args )
+    public static void main( String[] args )throws Exception
     {
-        ApplicationContext context=new ClassPathXmlApplicationContext("spring.xml");
-    	 
-        Vehicle obj=(Vehicle)context.getBean("vehicle");
+        DataInputStream z=new DataInputStream(System.in);
+    	ApplicationContext context=new ClassPathXmlApplicationContext("spring.xml");
+    	System.out.println("Which vehicle do you wanna drive- bike or car?");
+    	String veh=z.readLine();
+        Vehicle obj=(Vehicle)context.getBean(veh);
         obj.drive();
     }
 }
